@@ -1,3 +1,8 @@
+//Input: Array x[1..n]  , nilai k ditentukan
+//Asumsi :  Fungsi Max dan Min sudah ada
+//Output: Tabel distribusi Frekuensi (interval, m, r, f, fr,fk)
+//ex. n=30
+
 function [interval, m, r, f, fr,fk] = TDistribusiFrekuensi(x,k)
      
     x_min=min(x);
