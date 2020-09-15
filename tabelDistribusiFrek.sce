@@ -3,27 +3,28 @@
 //Output: Tabel distribusi Frekuensi (interval, m, r, f, fr,fk)
 //ex. n=30
 
-function [interval, m, r, f, fr,fk] = TDistribusiFrekuensi(x,k)
-     
+clc
+clear
+
+function [interval, m, f, fr,fk] = TDistribusiFrekuensi(x,k)
     x_min=min(x);
     x_max=max(x);
-
-    r=x_max-x_min;
+    R=x_max-x_min;
      
-    i=ceil(r/k);
-     
+    i=ceil(R/k);
+    
     for q=1:(k+1)
          interval(q)= x_min + (q-1)*i;
     end
      
     for q=1:k
-        m(q)=interval(q)-0.5*i;
+        m(q)=interval(q)+0.5*i;
         f(q)=0;
     end
      
     for p=1:30
         for q=1:k
-            if x(p) >= interval(q)  &  x(p)< interval(q+1)         
+            if x(p) >= interval(q)  &  x(p)< interval(q+1)
                  f(q)= f(q)+1;
             end
         end
@@ -36,9 +37,8 @@ function [interval, m, r, f, fr,fk] = TDistribusiFrekuensi(x,k)
     
     //Frekuensi Kumulatif 
     fk(1)=f(1);
-     
-    for q=2:k    
-        fk(q)=fk(q-1)+f(q);   
+    for q=2:k
+        fk(q)=fk(q-1)+f(q);
     end
      
-    endfunction
+endfunction
