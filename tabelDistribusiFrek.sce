@@ -1,10 +1,7 @@
-//Input: Array x[1..n]  , nilai k ditentukan
-//Asumsi :  Fungsi Max dan Min sudah ada
-//Output: Tabel distribusi Frekuensi (interval, m, r, f, fr,fk)
-//ex. n=30
-
-clc
-clear
+//TDistribusiFrekuensi(x[1..n], k)
+//Input: Array x[1..n], nilai k ditentukan
+//Asumsi : Fungsi Max dan Min sudah ada
+//Output : Tabel distribusi Frekuensi(interval, m, f, fr, fk)
 function [interval, m, f, fr,fk] = TDistribusiFrekuensi(x, k, n)
     x_min=min(x);
     x_max=max(x);
@@ -40,8 +37,19 @@ function [interval, m, f, fr,fk] = TDistribusiFrekuensi(x, k, n)
     end     
 endfunction
 
-//MeanData (x[1..n])
-//input: Arrayx[1..n]
+//MeanData(x[1..n])
+//Input Array x[1..n]
+//Output: mean (rata-rata)
+function [mean] = MeanData(x, n)
+    jumlah = 0
+    for i=1:n
+        jumlah=jumlah + x(i);
+    end
+    mean = jumlah/n
+endfunction
+
+//MeanDataK (m[1..n], f[1..k], fk[k])
+//input: Arrayx m[1..k], f[1..k], fk[k]
 //Output: mean(rata-rata)
 function [mean] = MeanDataK(m, f, fk, k)
     jumlah=0  
@@ -51,6 +59,18 @@ function [mean] = MeanDataK(m, f, fk, k)
     mean=jumlah/fk(k)
 endfunction
 
+//VariansiData(x[1..n])
+//input: Array x(1..n)
+//Output: variansi
+function [variansi] = VariansiData(x, n)
+    jumlah=0
+    for i=1:n
+        jumlah=jumlah+x(i)^2
+    end
+    variansi=(jumlah-n*(mean^2))/(n-1)
+endfunction
+
+//VariansiDataK(m[1..k], f[1..k], f[k])
 //Input Array m(1..k), f(1..k), fk(k)
 //Output variansi
 function [variansi]=VariansiDataK(m, f, fk, k)
@@ -61,5 +81,3 @@ function [variansi]=VariansiDataK(m, f, fk, k)
     end
     variansi=(jumlah-fk(k)*mean^2)/(fk(k)-1)
 endfunction
-
-
